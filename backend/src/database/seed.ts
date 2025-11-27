@@ -112,6 +112,152 @@ async function seedDatabase() {
       video_url: 'https://www.youtube.com/watch?v=moEqYloND34',
       brand: 'Spotify',
       category: 'Entertainment'
+    },
+    // Tech Ads
+    {
+      title: 'Samsung Galaxy S24 Ultra - Epic',
+      description: 'The next-generation AI smartphone with incredible camera capabilities.',
+      video_url: 'https://www.youtube.com/watch?v=SAz8YWNrFF0',
+      brand: 'Samsung',
+      category: 'Technology'
+    },
+    {
+      title: 'Microsoft Surface - Be Unstoppable',
+      description: 'The power to create, collaborate, and achieve more.',
+      video_url: 'https://www.youtube.com/watch?v=7V3f1bfb3hI',
+      brand: 'Microsoft',
+      category: 'Technology'
+    },
+    {
+      title: 'Sony - Believe',
+      description: 'Experience the power of innovation and entertainment.',
+      video_url: 'https://www.youtube.com/watch?v=zXLZvsSmURs',
+      brand: 'Sony',
+      category: 'Technology'
+    },
+    {
+      title: 'Dell - Expand Your YOUniverse',
+      description: 'Technology that empowers you to do amazing things.',
+      video_url: 'https://www.youtube.com/watch?v=8HqyEHqEYho',
+      brand: 'Dell',
+      category: 'Technology'
+    },
+    // Automotive Ads
+    {
+      title: 'Mercedes-Benz - The Best or Nothing',
+      description: 'Luxury, performance, and innovation combined in perfect harmony.',
+      video_url: 'https://www.youtube.com/watch?v=jRW0E_23WQE',
+      brand: 'Mercedes-Benz',
+      category: 'Automotive'
+    },
+    {
+      title: 'Audi - Vorsprung durch Technik',
+      description: 'Progress through technology. The future of driving.',
+      video_url: 'https://www.youtube.com/watch?v=3fNpJ77PNd4',
+      brand: 'Audi',
+      category: 'Automotive'
+    },
+    {
+      title: 'Ford F-150 Lightning - The Future is Electric',
+      description: 'America\'s favorite truck goes electric with incredible power.',
+      video_url: 'https://www.youtube.com/watch?v=kRqxyqjpOHs',
+      brand: 'Ford',
+      category: 'Automotive'
+    },
+    {
+      title: 'Honda - The Power of Dreams',
+      description: 'Innovation and reliability that moves you forward.',
+      video_url: 'https://www.youtube.com/watch?v=PzB24JkqUsg',
+      brand: 'Honda',
+      category: 'Automotive'
+    },
+    // Food & Beverage Ads
+    {
+      title: 'Pepsi - Is Pepsi OK?',
+      description: 'Super Bowl commercial featuring Steve Carell and Cardi B.',
+      video_url: 'https://www.youtube.com/watch?v=h_MkTRJcS5s',
+      brand: 'Pepsi',
+      category: 'Beverages'
+    },
+    {
+      title: 'Red Bull - Gives You Wings',
+      description: 'Extreme sports and adventure fuel your passion.',
+      video_url: 'https://www.youtube.com/watch?v=ZGLkwvP7o-8',
+      brand: 'Red Bull',
+      category: 'Beverages'
+    },
+    {
+      title: 'Budweiser - Whassup',
+      description: 'The legendary commercial that became a cultural phenomenon.',
+      video_url: 'https://www.youtube.com/watch?v=W16qzZ7J5YQ',
+      brand: 'Budweiser',
+      category: 'Beverages'
+    },
+    {
+      title: 'Doritos - Crash the Super Bowl',
+      description: 'Fan-made commercial that won the Doritos challenge.',
+      video_url: 'https://www.youtube.com/watch?v=TgOe3OemydU',
+      brand: 'Doritos',
+      category: 'Food'
+    },
+    // Fashion & Luxury Ads
+    {
+      title: 'Gucci - The Alchemist\'s Garden',
+      description: 'Luxury fragrance campaign celebrating artistry and craftsmanship.',
+      video_url: 'https://vimeo.com/422836806',
+      brand: 'Gucci',
+      category: 'Fashion'
+    },
+    {
+      title: 'Louis Vuitton - L\'Invitation au Voyage',
+      description: 'A cinematic journey through elegance and timeless style.',
+      video_url: 'https://www.youtube.com/watch?v=XDy3NS7ax7M',
+      brand: 'Louis Vuitton',
+      category: 'Fashion'
+    },
+    {
+      title: 'Rolex - A Crown for Every Achievement',
+      description: 'Precision, prestige, and performance in watchmaking excellence.',
+      video_url: 'https://www.youtube.com/watch?v=xNGjIGtzDNQ',
+      brand: 'Rolex',
+      category: 'Luxury'
+    },
+    // Sports & Entertainment Ads
+    {
+      title: 'Adidas - Impossible is Nothing',
+      description: 'Inspiring athletes to push beyond their limits.',
+      video_url: 'https://www.youtube.com/watch?v=yzx0HTCuydg',
+      brand: 'Adidas',
+      category: 'Sports'
+    },
+    {
+      title: 'Under Armour - I Will What I Want',
+      description: 'Empowering message featuring Misty Copeland.',
+      video_url: 'https://www.youtube.com/watch?v=ZY0cdXr_1MA',
+      brand: 'Under Armour',
+      category: 'Sports'
+    },
+    {
+      title: 'PlayStation 5 - Play Has No Limits',
+      description: 'Next-gen gaming experience that transforms entertainment.',
+      video_url: 'https://www.youtube.com/watch?v=RkC0l4iekYo',
+      brand: 'PlayStation',
+      category: 'Entertainment'
+    },
+    // Travel & Services Ads
+    {
+      title: 'Emirates - Hello Tomorrow',
+      description: 'Fly better with world-class service and luxury travel.',
+      video_url: 'https://www.youtube.com/watch?v=98BIu9dpwHU',
+      brand: 'Emirates',
+      category: 'Travel'
+    },
+    {
+      title: 'Booking.com - Booking.yeah',
+      description: 'Book the perfect accommodation for your next adventure.',
+      video_url: 'https://www.youtube.com/watch?v=IkE1_T4aBLY',
+      brand: 'Booking.com',
+      category: 'Travel'
     }
   ];
 

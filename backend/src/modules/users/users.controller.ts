@@ -176,6 +176,66 @@ export class UsersController {
       throw error;
     }
   }
+
+  /**
+   * GET /api/users/:id/profile
+   * Get user profile (public)
+   */
+  async getUserProfile(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.params;
+      const profileData = usersService.getUserProfile(id);
+
+      res.json({
+        success: true,
+        data: profileData
+      });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /**
+   * GET /api/users/:id/votes
+   * Get user's voting history
+   */
+  async getUserVotes(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.params;
+      const page = parseInt(req.query.page as string) || 1;
+      const limit = parseInt(req.query.limit as string) || 20;
+
+      const result = usersService.getUserVotingHistory(id, page, limit);
+
+      res.json({
+        success: true,
+        data: result
+      });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /**
+   * GET /api/users/me/stats
+   * Get current user's stats
+   */
+  async getMyStats(req: AuthRequest, res: Response): Promise<void> {
+    try {
+      if (!req.user) {
+        throw new AppError('Unauthorized', 401);
+      }
+
+      const stats = usersService.getFullUserStats(req.user.id);
+
+      res.json({
+        success: true,
+        data: stats
+      });
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default new UsersController();

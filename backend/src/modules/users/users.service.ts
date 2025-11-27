@@ -219,6 +219,102 @@ export class UsersService {
       averageRating: result.average_rating ? Math.round(result.average_rating * 100) / 100 : 0
     };
   }
+
+  /**
+   * Get user profile (public data only)
+   */
+  getUserProfile(userId: string) {
+    const user = this.getUserById(userId);
+    if (!user) {
+      throw new AppError('User not found', 404);
+    }
+
+    // Get stats
+    const votesStmt = db.prepare('SELECT COUNT(*) as count FROM votes WHERE user_id = ?');
+    const bookmarksStmt = db.prepare('SELECT COUNT(*) as count FROM bookmarks WHERE user_id = ?');
+    const commentsStmt = db.prepare('SELECT COUNT(*) as count FROM comments WHERE user_id = ?');
+    const avgRatingStmt = db.prepare('SELECT AVG(rating) as avg FROM votes WHERE user_id = ?');
+
+    const votesCount = (votesStmt.get(userId) as { count: number }).count;
+    const bookmarksCount = (bookmarksStmt.get(userId) as { count: number }).count;
+    const commentsCount = (commentsStmt.get(userId) as { count: number }).count;
+    const avgRating = (avgRatingStmt.get(userId) as { avg: number | null }).avg;
+
+    return {
+      profile: {
+        id: user.id,
+        username: user.username,
+        role: user.role,
+        created_at: user.created_at
+      },
+      stats: {
+        totalVotes: votesCount,
+        totalBookmarks: bookmarksCount,
+        totalComments: commentsCount,
+        averageRating: avgRating ? Math.round(avgRating * 100) / 100 : 0
+      }
+    };
+  }
+
+  /**
+   * Get user's voting history with pagination
+   */
+  getUserVotingHistory(userId: string, page: number = 1, limit: number = 20) {
+    const offset = (page - 1) * limit;
+
+    // Get total count
+    const countStmt = db.prepare('SELECT COUNT(*) as count FROM votes WHERE user_id = ?');
+    const { count } = countStmt.get(userId) as { count: number };
+
+    // Get votes with ad details
+    const stmt = db.prepare(`
+      SELECT
+        v.id,
+        v.ad_id,
+        v.rating,
+        v.created_at,
+        a.title as ad_title,
+        a.thumbnail_url as ad_thumbnail_url,
+        a.brand as ad_brand
+      FROM votes v
+      JOIN ads a ON v.ad_id = a.id
+      WHERE v.user_id = ?
+      ORDER BY v.created_at DESC
+      LIMIT ? OFFSET ?
+    `);
+
+    const votes = stmt.all(userId, limit, offset);
+
+    return {
+      votes,
+      total: count,
+      page,
+      limit,
+      totalPages: Math.ceil(count / limit)
+    };
+  }
+
+  /**
+   * Get full user stats (for current user)
+   */
+  getFullUserStats(userId: string) {
+    const votesStmt = db.prepare('SELECT COUNT(*) as count FROM votes WHERE user_id = ?');
+    const bookmarksStmt = db.prepare('SELECT COUNT(*) as count FROM bookmarks WHERE user_id = ?');
+    const commentsStmt = db.prepare('SELECT COUNT(*) as count FROM comments WHERE user_id = ?');
+    const avgRatingStmt = db.prepare('SELECT AVG(rating) as avg FROM votes WHERE user_id = ?');
+
+    const votesCount = (votesStmt.get(userId) as { count: number }).count;
+    const bookmarksCount = (bookmarksStmt.get(userId) as { count: number }).count;
+    const commentsCount = (commentsStmt.get(userId) as { count: number }).count;
+    const avgRating = (avgRatingStmt.get(userId) as { avg: number | null }).avg;
+
+    return {
+      totalVotes: votesCount,
+      totalBookmarks: bookmarksCount,
+      totalComments: commentsCount,
+      averageRating: avgRating ? Math.round(avgRating * 100) / 100 : 0
+    };
+  }
 }
 
 export default new UsersService();

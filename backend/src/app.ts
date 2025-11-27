@@ -9,6 +9,9 @@ import adsRoutes from './modules/ads/ads.routes';
 import votingRoutes from './modules/voting/voting.routes';
 import usersRoutes from './modules/users/users.routes';
 import analyticsRoutes from './modules/analytics/analytics.routes';
+import commentsRoutes from './modules/comments/comments.routes';
+import bookmarksRoutes from './modules/bookmarks/bookmarks.routes';
+import reportsRoutes from './modules/reports/reports.routes';
 
 // Import middleware
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
@@ -57,6 +60,9 @@ app.use('/api/ads', adsRoutes);
 app.use('/api/votes', votingRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api', commentsRoutes);
+app.use('/api', bookmarksRoutes);
+app.use('/api', reportsRoutes);
 
 // Welcome route
 app.get('/', (req: Request, res: Response) => {
@@ -68,6 +74,7 @@ app.get('/', (req: Request, res: Response) => {
       votes: '/api/votes',
       users: '/api/users',
       analytics: '/api/analytics',
+      comments: '/api/comments',
       health: '/health'
     }
   });

@@ -40,14 +40,17 @@ const Header: React.FC = () => {
           <div className="flex items-center space-x-4">
             {isAuthenticated ? (
               <>
-                <div className="hidden md:flex items-center space-x-3">
+                <Link
+                  to="/profile"
+                  className="hidden md:flex items-center space-x-3 hover:opacity-80 transition-opacity"
+                >
                   <div className="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center">
                     <span className="text-white text-sm font-semibold">
                       {user?.username.charAt(0).toUpperCase()}
                     </span>
                   </div>
                   <span className="text-white">{user?.username}</span>
-                </div>
+                </Link>
                 <Button variant="outline" size="sm" onClick={handleLogout}>
                   Logout
                 </Button>

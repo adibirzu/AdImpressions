@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Ad } from '../../types';
 import Card from '../common/Card';
 import VoteButtons from '../voting/VoteButtons';
+import BookmarkButton from '../bookmarks/BookmarkButton';
 
 interface AdCardProps {
   ad: Ad;
@@ -13,8 +14,9 @@ const AdCard: React.FC<AdCardProps> = ({ ad, onVoteChange }) => {
   const navigate = useNavigate();
 
   const handleCardClick = (e: React.MouseEvent) => {
-    // Don't navigate if clicking on vote buttons
-    if ((e.target as HTMLElement).closest('.vote-buttons')) {
+    // Don't navigate if clicking on vote buttons or bookmark button
+    if ((e.target as HTMLElement).closest('.vote-buttons') ||
+        (e.target as HTMLElement).closest('.bookmark-button')) {
       return;
     }
     navigate(`/ads/${ad.id}`);
@@ -83,14 +85,24 @@ const AdCard: React.FC<AdCardProps> = ({ ad, onVoteChange }) => {
             {ad.view_count.toLocaleString()} views
           </div>
 
-          <div className="vote-buttons">
-            <VoteButtons
-              adId={ad.id}
-              initialUpvotes={ad.upvotes}
-              initialDownvotes={ad.downvotes}
-              size="sm"
-              onVoteChange={onVoteChange}
-            />
+          <div className="flex items-center gap-3">
+            <div className="bookmark-button">
+              <BookmarkButton
+                adId={ad.id}
+                size="sm"
+                showCount={false}
+              />
+            </div>
+
+            <div className="vote-buttons">
+              <VoteButtons
+                adId={ad.id}
+                initialUpvotes={ad.upvotes}
+                initialDownvotes={ad.downvotes}
+                size="sm"
+                onVoteChange={onVoteChange}
+              />
+            </div>
           </div>
         </div>
       </div>

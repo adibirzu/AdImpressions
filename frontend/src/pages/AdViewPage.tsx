@@ -4,6 +4,10 @@ import { useAd } from '../hooks/useAds';
 import AdPlayer from '../components/ads/AdPlayer';
 import VoteButtons from '../components/voting/VoteButtons';
 import VoteStats from '../components/voting/VoteStats';
+import CommentSection from '../components/comments/CommentSection';
+import BookmarkButton from '../components/bookmarks/BookmarkButton';
+import ShareButtons from '../components/sharing/ShareButtons';
+import ReportButton from '../components/reporting/ReportButton';
 import Card from '../components/common/Card';
 import Loading from '../components/common/Loading';
 import Button from '../components/common/Button';
@@ -97,6 +101,11 @@ const AdViewPage: React.FC = () => {
                   size="lg"
                   onVoteChange={refetch}
                 />
+                <BookmarkButton
+                  adId={ad.id}
+                  size="lg"
+                  showCount={true}
+                />
               </div>
 
               <div className="border-t border-dark-600 pt-6">
@@ -122,6 +131,21 @@ const AdViewPage: React.FC = () => {
                 </div>
               )}
 
+              {/* Share and Report Section */}
+              <div className="border-t border-dark-600 pt-6 mt-6">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                  <ShareButtons
+                    adId={ad.id}
+                    adTitle={ad.title}
+                    shareCount={0}
+                  />
+                  <ReportButton
+                    adId={ad.id}
+                    adTitle={ad.title}
+                  />
+                </div>
+              </div>
+
               <div className="border-t border-dark-600 pt-6 mt-6">
                 <div className="flex items-center justify-between text-sm text-gray-400">
                   <span>Uploaded by {ad.uploaded_by}</span>
@@ -129,6 +153,9 @@ const AdViewPage: React.FC = () => {
                 </div>
               </div>
             </Card>
+
+            {/* Comments Section */}
+            <CommentSection adId={ad.id} />
           </div>
 
           {/* Sidebar */}

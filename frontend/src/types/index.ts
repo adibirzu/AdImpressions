@@ -132,6 +132,99 @@ export interface AdFilters {
   page_size?: number;
 }
 
+// Comment types
+export interface Comment {
+  id: string;
+  ad_id: string;
+  user_id: string | null;
+  content: string;
+  parent_id: string | null;
+  created_at: string;
+  updated_at: string;
+  username?: string;
+}
+
+export interface CommentWithReplies extends Comment {
+  replies: Comment[];
+}
+
+export interface CommentFormData {
+  content: string;
+  parent_id?: string;
+}
+
+export interface CommentsPaginatedResponse {
+  comments: CommentWithReplies[];
+  total: number;
+  page: number;
+  limit: number;
+  hasMore: boolean;
+}
+
+// Bookmark types
+export interface Bookmark {
+  id: string;
+  user_id: string;
+  ad_id: string;
+  created_at: string;
+}
+
+export interface BookmarkedAd extends Ad {
+  bookmark_id: string;
+  bookmarked_at: string;
+}
+
+export interface BookmarksPaginatedResponse {
+  bookmarks: BookmarkedAd[];
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
+}
+
+export interface BookmarkStatus {
+  isBookmarked: boolean;
+  bookmarkCount: number;
+}
+
+// Profile types
+export interface UserProfile {
+  id: string;
+  username: string;
+  role: 'user' | 'admin' | 'moderator';
+  created_at: string;
+}
+
+export interface UserStats {
+  totalVotes: number;
+  totalBookmarks: number;
+  totalComments: number;
+  averageRating: number;
+}
+
+export interface UserProfileData {
+  profile: UserProfile;
+  stats: UserStats;
+}
+
+export interface VoteWithAd {
+  id: string;
+  ad_id: string;
+  rating: number;
+  created_at: string;
+  ad_title: string;
+  ad_thumbnail_url: string | null;
+  ad_brand: string | null;
+}
+
+export interface VotingHistoryResponse {
+  votes: VoteWithAd[];
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
+}
+
 // Error types
 export interface ApiError {
   message: string;

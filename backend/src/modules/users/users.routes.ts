@@ -12,10 +12,17 @@ router.post('/login', asyncHandler(usersController.login.bind(usersController)))
 // Protected routes
 router.get('/me', authenticate, asyncHandler(usersController.getCurrentUser.bind(usersController)));
 router.put('/me', authenticate, asyncHandler(usersController.updateCurrentUser.bind(usersController)));
+router.get('/me/stats', authenticate, asyncHandler(usersController.getMyStats.bind(usersController)));
 
 // Admin routes
 router.get('/', authenticate, requireAdmin, asyncHandler(usersController.getAllUsers.bind(usersController)));
+
+// Public profile routes
 router.get('/:id', asyncHandler(usersController.getUserById.bind(usersController)));
+router.get('/:id/profile', asyncHandler(usersController.getUserProfile.bind(usersController)));
+router.get('/:id/votes', asyncHandler(usersController.getUserVotes.bind(usersController)));
+
+// Admin routes
 router.delete('/:id', authenticate, requireAdmin, asyncHandler(usersController.deleteUser.bind(usersController)));
 
 export default router;

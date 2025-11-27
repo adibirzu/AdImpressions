@@ -10,6 +10,7 @@ import AnalyticsPage from './pages/AnalyticsPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import AdminPage from './pages/AdminPage';
+import ProfilePage from './pages/ProfilePage';
 import Loading from './components/common/Loading';
 
 // Protected Route Component
@@ -104,6 +105,22 @@ const AppRouter: React.FC = () => {
         element={
           <Layout>
             <AnalyticsPage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <Layout>
+            <ProfilePage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/profile/:id"
+        element={
+          <Layout>
+            <ProfilePage />
           </Layout>
         }
       />
