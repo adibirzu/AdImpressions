@@ -1,0 +1,38 @@
+# Tests Directory
+
+This directory is reserved for test files.
+
+## Test Structure
+
+You can organize your tests as follows:
+
+```
+tests/
+├── unit/           # Unit tests for individual functions/modules
+├── integration/    # Integration tests for API endpoints
+└── e2e/           # End-to-end tests
+```
+
+## Running Tests
+
+```bash
+npm test           # Run all tests
+npm run test:watch # Run tests in watch mode
+```
+
+## Writing Tests
+
+Use Jest and Supertest for testing:
+
+```typescript
+import request from 'supertest';
+import app from '../src/app';
+
+describe('GET /api/ads', () => {
+  it('should return all ads', async () => {
+    const response = await request(app).get('/api/ads');
+    expect(response.status).toBe(200);
+    expect(response.body.success).toBe(true);
+  });
+});
+```
